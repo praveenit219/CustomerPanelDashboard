@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+
+<br>
+
+<div class="row">
+  <div class="col-md-6 offset-md-6">
+    <div class="card">
+      <br>
+      <div class="card-block">
+        <img class="mx-auto d-block" src="/assets/img/pheonix.png" alt="" />
+      </div>
+      <div class="card-block">
+        <div class="container">
+          <h4 class="text-center">First Time here ? Register</h4>
+          <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" [(ngModel)]="identifier.email" name="email" #identifierEmail="ngModel" required>
+              <div *ngIf="identifierEmail.errors?.required && identifierEmail.touched" class="alert alert-danger">Email is required</div>
+            </div>
+            <div class="form-group">
+              <label for="userId">UserId</label>
+              <input type="text" class="form-control" [(ngModel)]="identifier.userId" name="userId" #identifierUserId="ngModel" minlength="2"
+                required>
+              <div *ngIf="identifierUserId.errors?.required && identifierUserId.touched" class="alert alert-danger">UserId is required</div>
+              <div *ngIf="identifierUserId.errors?.minlength && identifierUserId.touched" class="alert alert-danger">userId should be atleast 2 characters</div>
+            </div>
+            <div class="form-group">
+              <label for="Password">Password</label>
+              <input type="password" class="form-control" [(ngModel)]="identifier.password" name="password" #identifierPassword="ngModel"
+                minlength="2" required>
+              <div *ngIf="identifierPassword.errors?.required && identifierPassword.touched" class="alert alert-danger">Password is required</div>
+              <div *ngIf="identifierPassword.errors?.minlength && identifierPassword.touched" class="alert alert-danger">Password should be atleast 2 characters</div>
+            </div>
+
+
+            <input type="submit" class="btn btn-primary btn-block" value="submit">
+            <br>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

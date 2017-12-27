@@ -1,0 +1,53 @@
+
+<div *ngIf="isLoggedIn; else noLoggedIn">
+<div class="row">
+  <div class="col-md-6">
+    <h2>
+      <i class="fa fa-users"></i> Customers</h2>
+  </div>
+  
+  <div class="col-md-6">
+    <h5 class="pull-right text-muted">Total Owed: {{totalOwed | currency:"USD":true }}</h5>
+  </div>
+</div>
+
+
+
+  <table *ngIf="customers?.length > 0; else noCustomers" class="table table-striped">
+    <thead class="thead-inverse">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Balance</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{ customer.id }}</td>
+        <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.balance | currency:"USD":true}}</td>
+        <td>
+          <a [routerLink]="['/client/'+customer.id]" href="" class="btn btn-secondary btn-sm">
+            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Details</a>
+        </td>
+      </tr>
+    </tbody>
+
+
+  </table>
+</div>
+
+<ng-template #noCustomers>
+  <hr>
+  <h5>There are no customers in the system</h5>
+
+</ng-template>
+
+<ng-template #noLoggedIn>
+  <hr>
+  <h5>please login to see the customers</h5>
+
+</ng-template>
